@@ -2,7 +2,52 @@ def hello
   puts "Hi"
 end
 
+def validate_string(str)
+  if str.is_a?(String)
+    return
+  end
 
+  raise "O texto deve ser uma string."
+end
+
+def str_method_reverse(str)
+  validate_string(str)
+  puts str.reverse
+end
+
+def str_method_upper_lower(str)
+  validate_string(str)
+
+  commands_for_methods = [1,2]
+  user_input = nil
+
+  until commands_for_methods.include?(user_input)
+    puts "Insira um valor para método válido por favor, 1 para downcase e 2 para upcase"
+    user_input = gets.chomp.to_i
+  end
+
+  if user_input == 1
+    puts str.downcase
+  elsif user_input == 2
+    puts str.upcase
+  else
+    puts "Erro interno, desculpe, tente novamente"
+  end
+end
+
+def str_method_frag_finder(str, sub_str)
+  validate_string(str)
+  str.include?(sub_str)
+end
+
+def str_concat(str, another_str)
+  validate_string(str)
+  str_concat_target = str.concat(another_str)
+  #same as str + another_str, but more efficient
+  puts str_concat_target
+end
+
+availableMethods = methods.select { |element| element.to_s.start_with?('str_method') }.map { |element| method(element) }
 
 =begin
 String Manipulation Tool
@@ -24,6 +69,8 @@ def main
   puts "Here, you can manipulate strings in certain ways"
   puts "Here the current methods available: "
 
+  str_method_reverse('91814131')
+  str_method_upper_lower("Versos")
 
 end
 
